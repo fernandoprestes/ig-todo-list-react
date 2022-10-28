@@ -9,6 +9,7 @@
     "lint": "eslint \"./src/**/*.{ts,tsx}\" --quiet"
   },
   "dependencies": {
+    "@iconify-prerendered/vue-ph": "^0.13.1656183091",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2"
