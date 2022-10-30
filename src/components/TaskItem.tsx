@@ -1,4 +1,12 @@
-export const TaskItem = function TaskItemComponent() {
+import { ITask } from '~/@types/ITask';
+
+interface Props {
+  task: ITask;
+  onRemoveTask: (taskId: string) => void;
+  onCompleted: (taskId: string) => void;
+}
+
+export const TaskItem = function TaskItemComponent({ task, onRemoveTask, onCompleted }: Props) {
   return (
     <div className='flex items-center justify-between gap-4 rounded bg-gray-500 p-4'>
       <div>
@@ -11,13 +19,15 @@ export const TaskItem = function TaskItemComponent() {
         <input
           type='checkbox'
           id='checkTask'
-          className='ring-blue checked:(bg-purple ring-purple) h-4 w-4 appearance-none rounded-full border border-transparent ring'
+          onChange={() => onCompleted(task.id)}
+          className='ring-blue checked:(bg-purple ring-purple) h-4 w-4 cursor-pointer appearance-none rounded-full border border-transparent ring'
         />
       </div>
-      <p className='mr-auto text-gray-100'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      <p className={`${task.isCompleted ? ' text-purple line-through' : 'text-gray-100'} mr-auto`}>{task.title}</p>
       <button
         type='button'
         title='deletar tarefa'
+        onClick={() => onRemoveTask(task.id)}
         className='hover:(text-danger) flex items-center justify-center gap-2 rounded p-2 font-bold text-gray-100'
       >
         <span className='i-ph-trash h-5 w-5' />
