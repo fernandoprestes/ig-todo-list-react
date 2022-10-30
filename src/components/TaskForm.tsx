@@ -1,15 +1,14 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { TodoContext } from '~/context/TodoContext';
 
-interface Props {
-  onAddTask: (taskTitle: string) => void;
-}
-
-export const TaskForm = function TaskFormComponent({ onAddTask }: Props) {
+export const TaskForm = function TaskFormComponent() {
   const [title, setTitle] = useState('');
+
+  const { handleAddTask } = useContext(TodoContext);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    onAddTask(title);
+    handleAddTask(title);
     setTitle('');
   }
 

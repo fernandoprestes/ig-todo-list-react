@@ -1,13 +1,9 @@
-import { ITask } from '~/@types/ITask';
+import { useContext } from 'react';
+import { TodoContext } from '~/context/TodoContext';
 import { TaskItem } from './TaskItem';
 
-interface Props {
-  tasks: ITask[];
-  onRemoveTask: (taskId: string) => void;
-  onCompleted: (taskId: string) => void;
-}
-
-export const TaskList = function TaskListComponent({ tasks, onRemoveTask, onCompleted }: Props) {
+export const TaskList = function TaskListComponent() {
+  const { tasks } = useContext(TodoContext);
   const taskQuantity = tasks.length;
   const completedTask = tasks.filter(task => task.isCompleted).length;
   return (
@@ -30,8 +26,6 @@ export const TaskList = function TaskListComponent({ tasks, onRemoveTask, onComp
             <TaskItem
               task={task}
               key={task.id}
-              onRemoveTask={onRemoveTask}
-              onCompleted={onCompleted}
             />
           ))
         ) : (
