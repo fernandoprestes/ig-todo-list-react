@@ -1,7 +1,15 @@
+import { Header } from '~/components/Header';
+import { TaskForm } from '~/components/TaskForm';
+import { TaskList } from '~/components/TaskList';
+
 export function Home() {
   return (
-    <main className='flex h-screen items-center justify-center'>
-      <h2 className='text-2xl font-bold '>Hello World</h2>
-    </main>
+    <>
+      <Header />
+      <main className='space-y-4xl mx-auto flex max-w-[484px] flex-col items-center  justify-center'>
+        <TaskForm />
+        <TaskList />
+      </main>
+    </>
   );
 }
